@@ -1,0 +1,6 @@
+fastapi==0.68.1
+uvicorn==0.15.0
+sqlmodel==0.0.4
+strawberry-graphql
+asyncpg==0.24.0
+psycopg2-binary
