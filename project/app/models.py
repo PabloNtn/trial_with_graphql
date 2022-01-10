@@ -30,3 +30,4 @@ class Book(SQLModel, table=True):
 
 async def init_db():
    SQLModel.metadata.create_all(engine)
+

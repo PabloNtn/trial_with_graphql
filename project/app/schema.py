@@ -1,7 +1,19 @@
 from strawberry.fastapi import GraphQLRouter
 from typing import Optional,List
-from .db_functions import create_pessoas, get_pessoas, get_books, create_books
+
+from strawberry.scalars import ID
+from .db_functions import (
+                            create_pessoas, 
+                            get_pessoas, 
+                            get_books, 
+                            create_books, 
+                            delete_pessoa, 
+                            update_pessoa
+                            )
 import strawberry
+
+from graphql import  GraphQLObjectType
+
 
 @strawberry.type
 class Pessoa:
@@ -23,8 +35,10 @@ class Query:
 
 @strawberry.type
 class Mutation:
-        create_pessoa: Pessoa = strawberry.field(resolver=create_pessoas)
+        create_pessoa: list[Pessoa] = strawberry.field(resolver=create_pessoas)
         create_book: Book = strawberry.field(resolver=create_books)
+        delete_pessoa: str = strawberry.field(resolver=delete_pessoa)
+        update_pessoa: list[Pessoa] = strawberry.field(resolver = update_pessoa)
             
 
 schema = strawberry.Schema(query=Query, mutation=Mutation)
